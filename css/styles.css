@@ -1,13 +1,22 @@
 @import "reset.css";
 
-html,
+html {
+  width: 100vw;
+  height: 100vh;
+}
 body {
   box-sizing: border-box;
-  font-family: "Arial", sans-serif;
   margin: 0 auto;
   height: 100%;
   width: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: top;
+  background-image: url(../src/dreamlike2.jpg);
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -20,11 +29,24 @@ body {
   display: block;
 }
 
-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+.dashboard {
+  border-radius: 30px;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: 4px solid rgba(255, 255, 255, 0.678);
+  border-bottom: 3px solid rgba(255, 255, 255, 0.562);
+  width: 960px;
+  height: 540px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 4px 4px 0px rgba(23, 25, 31, 0.712);
+}
+
+.dashboard:before {
+  background-color: rgba(255, 255, 255, 0.411);
+  backdrop-filter: blur(13px) saturate(180%) brightness(120%);
+  content: "";
   height: 100%;
-  object-fit: cover;
+  position: absolute;
+  width: 100%;
 }

@@ -21,7 +21,7 @@ function getTime(){
     clockTitle.innerText = `${year}/${month}/${day} ${
         formatHour(hours)}:${
         minutes < 10? `0${minutes}` : minutes} ${
-            hours > 12? "pm" : "am"}`;
+            hours >= 12? "pm" : "am"}`;
 }
 
 function init(){

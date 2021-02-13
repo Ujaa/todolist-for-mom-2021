@@ -28,12 +28,12 @@ function paintToDo(text){
     const span = document.createElement("span");
     const newId = Date.now();
 
-    li.classList.add("toDoItem");
-    delBtn.innerText="X";
-    delBtn.classList.add("toDoDelBtn");
+    li.classList.add("to-do__to-dos");
+    delBtn.innerHTML='<i class="fas fa-times fa-xs"></i>';
+    delBtn.classList.add("to-do__del-btn");
     delBtn.addEventListener("click", deleteToDo);
-
     span.innerText = text;
+    span.classList.add("to-do__text");
 
     li.appendChild(span);
     li.appendChild(delBtn);

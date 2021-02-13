@@ -60,6 +60,10 @@
   color: var(--blue);
 }
 
+.to-do__del-btn {
+  background-color: transparent;
+}
+
 .to-do__to-dos i {
   color: var(--blue);
 }

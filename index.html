@@ -183,7 +183,7 @@
       <section class="container__right">
         <div class="to-do">
           <span class="to-do__title">To-do List</span>
-          <form class="to-do__form">
+          <form class="js-toDoForm to-do__form">
             <input
               class="to-do__input"
               type="text"
@@ -191,26 +191,14 @@
             />
           </form>
           <span class="to-do__subtitle">to dos</span>
-          <ul class="to-do__to-do-list">
-            <li class="to-do__to-dos">
-              <span class="to-do__text">할일 ~~~</span>
-              <i class="fas fa-times fa-xs"></i>
-            </li>
-            <li class="to-do__to-dos">
-              <span class="to-do__text">할일 ~~~</span>
-              <i class="fas fa-times fa-xs"></i>
-            </li>
-            <li class="to-do__to-dos">
-              <span class="to-do__text">할일 ~~~</span>
-              <i class="fas fa-times fa-xs"></i>
-            </li>
-          </ul>
+          <ul class="js-toDoList to-do__to-do-list"></ul>
         </div>
       </section>
     </main>
 
     <script src="javascript/clock.js"></script>
     <script src="javascript/greeting.js"></script>
+    <script src="javascript/todo.js"></script>
     <script
       src="https://kit.fontawesome.com/e924137b75.js"
       crossorigin="anonymous"

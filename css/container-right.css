@@ -11,9 +11,9 @@
   width: 95%;
   height: 95%;
   min-height: 300px;
-  border-radius: 15px;
+  border-radius: 17px;
   background: #e2e5ee;
-  box-shadow: inset 7px 7px 16px #c2c5cd, inset -7px -7px 16px #ffffff;
+  box-shadow: inset 5px 5px 10px #d2d5dd, inset -5px -5px 10px #f2f5ff;
   margin: 15px;
   padding: 40px 25px 30px 25px;
 }
@@ -48,7 +48,7 @@
   border-radius: 10px;
   background: #e2e5ee;
   box-shadow: 14px 14px 28px #ced0d9, -14px -14px 28px #f6faff;
-  padding: 17px 20px;
+  padding: 15px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,4 +57,9 @@
 
 .to-do__text {
   font-size: 14px;
+  color: var(--blue);
+}
+
+.to-do__to-dos i {
+  color: var(--blue);
 }

@@ -22,7 +22,7 @@ body {
 
 .container {
   height: 80%;
-  width: 900px;
+  width: 1000px;
   background-color: var(--default-color);
   border-radius: 15px;
   box-shadow: 0px 42px 79px #a2a4ad;
@@ -110,7 +110,7 @@ hr {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .greeting {
@@ -140,7 +140,7 @@ hr {
 .records {
   height: 30%;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: row-reverse;
 }
@@ -158,13 +158,22 @@ hr {
 .records__bar {
   height: 100%;
   width: 10px;
+  padding: 2px;
   border-radius: 17px;
   background: #e2e5ee;
   box-shadow: 2px 2px 5px #d0d3db, -2px -2px 5px #f4f7ff;
   margin-bottom: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .records__bar-painted {
+  height: 60%;
+  width: 6px;
+  border-radius: 17px;
+  background: var(--orange);
+  box-shadow: inset 5px 5px 5px #d2d5dd, inset -5px -5px 5px #f2f5ff;
 }
 
 .records__date {

@@ -1,0 +1,60 @@
+.container__right {
+  height: 100%;
+  min-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.to-do {
+  width: 95%;
+  height: 95%;
+  min-height: 300px;
+  border-radius: 15px;
+  background: #e2e5ee;
+  box-shadow: inset 7px 7px 16px #c2c5cd, inset -7px -7px 16px #ffffff;
+  margin: 15px;
+  padding: 40px 25px 30px 25px;
+}
+
+.to-do__title {
+  display: flex;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 20px;
+}
+
+.to-do__input {
+  width: 100%;
+  border-radius: 10px;
+  background: #e2e5ee;
+  box-shadow: inset 5px 5px 5px #c7cad1, inset -5px -5px 5px #fdffff;
+  margin-bottom: 40px;
+  padding: 10px 20px;
+}
+
+.to-do__subtitle {
+  display: flex;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--blue);
+  margin-bottom: 20px;
+}
+
+.to-do__to-dos {
+  width: 100%;
+  border-radius: 10px;
+  background: #e2e5ee;
+  box-shadow: 14px 14px 28px #ced0d9, -14px -14px 28px #f6faff;
+  padding: 17px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0px;
+}
+
+.to-do__text {
+  font-size: 14px;
+}

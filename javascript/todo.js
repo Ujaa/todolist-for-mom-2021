@@ -8,10 +8,23 @@ const TODOS_LS = 'toDos',
 let toDos = [];
 let newId = 0;
 
-function changeToDoState(event){
+function changeToDoStateWithSpan(event){
     const span = event.target;
     const li = span.parentNode;
     const icon = span.previousSibling;
+    icon.classList.toggle("far");
+    icon.classList.toggle("fas");
+    span.classList.toggle(TODOFINISGED_CN);
+    toDos.forEach(function(toDo){
+        if(toDo.id === parseInt(li.id)) toDo.isDone = !toDo.isDone;
+    });
+    saveToDos();
+}
+
+function changeToDoStateWithIcon(event){
+    const icon = event.target;
+    const li = icon.parentNode;
+    const span = icon.nextSibling;
     icon.classList.toggle("far");
     icon.classList.toggle("fas");
     span.classList.toggle(TODOFINISGED_CN);
@@ -34,12 +47,11 @@ function deleteToDo(event){
 }
 
 function saveToDos(){
+    console.log(toDos);
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 }
 
 function isToDoDone(toDo){
-    console.log(toDo.isDone);
-    console.log(typeof(toDo.isDone));
     if(toDo.isDone){
         return true;
     }else{
@@ -59,7 +71,7 @@ function paintToDo(text, done){
     delBtn.addEventListener("click", deleteToDo);
     span.innerText = text;
     span.classList.add("to-do__text");
-    span.addEventListener("click", changeToDoState);
+    span.addEventListener("click", changeToDoStateWithSpan);
     if(done){
         icon.classList.add("fas");
         span.classList.add(TODOFINISGED_CN);
@@ -67,6 +79,7 @@ function paintToDo(text, done){
         icon.classList.add("far");
     }
     icon.classList.add("fa-check-circle");
+    icon.addEventListener("click", changeToDoStateWithIcon);
 
     li.appendChild(icon);
     li.appendChild(span);
@@ -77,7 +90,7 @@ function paintToDo(text, done){
     const toDoObj = {
         id: newId,
         text: text,
-        isDone: false
+        isDone: done
     };
 
     toDos.push(toDoObj);

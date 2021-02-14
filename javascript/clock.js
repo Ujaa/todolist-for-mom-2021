@@ -17,7 +17,6 @@ function getTime(){
     const day = date.getDate();
     const minutes = date.getMinutes();
     const hours = date.getHours();
-    console.log(year, month, day);
     clockTitle.innerText = `${year}/${month}/${day} ${
         formatHour(hours)}:${
         minutes < 10? `0${minutes}` : minutes} ${

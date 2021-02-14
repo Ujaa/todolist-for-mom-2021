@@ -64,7 +64,7 @@ body {
   justify-content: flex-end;
 }
 
-.top-bar__d-day-wiget {
+.top-bar__d-day-widget {
   padding: 3px 11px;
   display: flex;
   flex-direction: column;
@@ -241,6 +241,11 @@ hr {
   height: 70px;
   background: linear-gradient(145deg, #cbced6, #f2f5ff);
   box-shadow: 22px 22px 59px #ced0d9, -22px -22px 59px #f6faff;
+}
+
+.progress__text {
+  position: absolute;
+  color: var(--blue);
 }
 
 .health {

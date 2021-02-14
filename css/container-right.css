@@ -30,7 +30,7 @@
   width: 100%;
   border-radius: 10px;
   background: #e2e5ee;
-  box-shadow: inset 5px 5px 5px #c7cad1, inset -5px -5px 5px #fdffff;
+  box-shadow: inset 6px 6px 6px #d2d5dd, inset -6px -6px 6px #f2f5ff;
   margin-bottom: 40px;
   padding: 10px 20px;
 }
@@ -56,14 +56,33 @@
 }
 
 .to-do__text {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--blue);
+  width: 100%;
 }
 
 .to-do__del-btn {
   background-color: transparent;
 }
 
-.to-do__to-dos i {
+.fa-times {
+  color: var(--blue);
+}
+
+.to-do-finished {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  color: var(--light-blue-2);
+}
+
+.fa-check-circle {
+  margin-right: 8px;
+}
+
+.to-do__to-dos .far {
+  color: var(--light-blue-2);
+}
+
+.to-do__to-dos .fas {
   color: var(--blue);
 }

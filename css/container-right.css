@@ -52,6 +52,7 @@
   justify-content: space-between;
   align-items: center;
   margin: 20px 0px;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .to-do__text {
@@ -59,6 +60,7 @@
   color: var(--blue);
   width: 100%;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .to-do__del-btn {
@@ -67,6 +69,7 @@
 
 .fa-times {
   color: var(--blue);
+  cursor: pointer;
 }
 
 .to-do-finished {
@@ -77,6 +80,7 @@
 
 .fa-check-circle {
   margin-right: 8px;
+  cursor: pointer;
 }
 
 .to-do__to-dos .far {
@@ -85,4 +89,13 @@
 
 .to-do__to-dos .fas {
   color: var(--blue);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

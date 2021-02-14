@@ -11,13 +11,13 @@ function formatHour(hour){
 }
 
 function getTime(){
-    const date = new Date();
-    const year = date.getFullYear();
-    const month = date.getMonth()+1;
-    const day = date.getDate();
-    const minutes = date.getMinutes();
-    const hours = date.getHours();
-    clockTitle.innerText = `${year}/${month}/${day} ${
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth()+1;
+    const date = currentDate.getDate();
+    const minutes = currentDate.getMinutes();
+    const hours = currentDate.getHours();
+    clockTitle.innerText = `${year}/${month}/${date} ${
         formatHour(hours)}:${
         minutes < 10? `0${minutes}` : minutes} ${
             hours >= 12? "pm" : "am"}`;

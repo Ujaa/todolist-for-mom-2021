@@ -2,12 +2,6 @@ const toDoForm = document.querySelector(".js-toDoForm"),
     toDoInput = toDoForm.querySelector("input"),
     toDoList = document.querySelector(".js-toDoList");
 
-const TODOS_LS = 'toDos',
-    TODOFINISGED_CN = 'to-do-finished';
-
-let toDos = [];
-let newId = 0;
-
 function changeToDoStateWithSpan(event){
     const span = event.target;
     const li = span.parentNode;
@@ -16,9 +10,14 @@ function changeToDoStateWithSpan(event){
     icon.classList.toggle("fas");
     span.classList.toggle(TODOFINISGED_CN);
     toDos.forEach(function(toDo){
-        if(toDo.id === parseInt(li.id)) toDo.isDone = !toDo.isDone;
+        if(toDo.id === parseInt(li.id)){
+            toDo.isDone = !toDo.isDone;
+            changeToDosCount(toDo.isDone);
+        } 
     });
     saveToDos();
+    updateRecords();
+    updateProgress();
 }
 
 function changeToDoStateWithIcon(event){
@@ -29,9 +28,14 @@ function changeToDoStateWithIcon(event){
     icon.classList.toggle("fas");
     span.classList.toggle(TODOFINISGED_CN);
     toDos.forEach(function(toDo){
-        if(toDo.id === parseInt(li.id)) toDo.isDone = !toDo.isDone;
+        if(toDo.id === parseInt(li.id)) {
+            toDo.isDone = !toDo.isDone;
+            changeToDosCount(toDo.isDone);
+        } 
     });
     saveToDos();
+    updateRecords();
+    updateProgress();
 }
 
 function deleteToDo(event){
@@ -39,16 +43,21 @@ function deleteToDo(event){
     const li = btn.parentNode;
     toDoList.removeChild(li);
     const cleanToDos = toDos.filter(function(toDo){
-        return toDo.id !== parseInt(li.id);
+        if(toDo.id !== parseInt(li.id)){
+            return toDo.id;
+        }else{
+            console.log("here");
+            if(toDo.isDone === true){
+                changeToDosCount("doneDel");
+            }else{
+                changeToDosCount("doneNotDel");
+            }
+        }
     });
     toDos=cleanToDos;
-    console.log(toDos);
     saveToDos();
-}
-
-function saveToDos(){
-    console.log(toDos);
-    localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
+    updateRecords();
+    updateProgress();
 }
 
 function isToDoDone(toDo){
@@ -59,7 +68,7 @@ function isToDoDone(toDo){
     }
 }
 
-function paintToDo(text, done){
+function paintToDo(text, done, dateD){
     const li = document.createElement("li");
     const delBtn = document.createElement("button");
     const span = document.createElement("span");
@@ -90,7 +99,12 @@ function paintToDo(text, done){
     const toDoObj = {
         id: newId,
         text: text,
-        isDone: done
+        isDone: done,
+        date: {
+            year: dateD[0],
+            month: dateD[1],
+            day: dateD[2]
+        }
     };
 
     toDos.push(toDoObj);
@@ -98,10 +112,34 @@ function paintToDo(text, done){
     newId++;
 }
 
+function changeToDosCount(value){
+    const todayCount = toDosCountArr[0];
+    console.log(value);
+    if(value === "add"){
+        todayCount.total += 1;
+    }else if(value === "doneDel"){
+        todayCount.total -= 1;
+        todayCount.done -= 1;
+    }else if(value === "doneNotDel"){
+        todayCount.total -= 1;
+    }else if(value === true) {
+        todayCount.done += 1;
+    }else if(value === false) {
+        todayCount.done -= 1;
+    }else{
+        console.log("bug");
+    }
+    saveToDosCount();
+}
+
 function handleSubmit(event){
+    const today = new Date();
     event.preventDefault();
     const currentValue = toDoInput.value;
-    paintToDo(currentValue, false);
+    paintToDo(currentValue, false, [today.getFullYear(),today.getMonth()+1,today.getDate()]);
+    changeToDosCount("add");
+    updateRecords();
+    updateProgress();
     toDoInput.value = "";
 }
 
@@ -109,15 +147,34 @@ function loadToDos(){
     const loadedToDos = localStorage.getItem(TODOS_LS);
     if(loadedToDos !== null){
         const parsedToDos = JSON.parse(loadedToDos);
-        console.log(parsedToDos);
         parsedToDos.forEach(function(toDo){
-            paintToDo(toDo.text,isToDoDone(toDo));
+            paintToDo(toDo.text,isToDoDone(toDo),toDo.date);
         });
+    }
+}
+
+function saveToDosCount(){
+    localStorage.setItem(TODOSCOUNT_LS, JSON.stringify(toDosCountArr));
+}
+
+function loadToDosCount(){
+    const loadedToDosCountArr = localStorage.getItem(TODOSCOUNT_LS);
+    if(loadedToDosCountArr !== null){
+        toDosCountArr = JSON.parse(loadedToDosCountArr);
+    }else{
+        for(i=1; i<=13; i++){
+            toDosCountArr.push({
+                total: 0,
+                done: 0
+            });
+          }
+        saveToDosCount();
     }
 }
 
 function init(){
     loadToDos();
+    loadToDosCount();
     toDoForm.addEventListener("submit",handleSubmit);
 }
 

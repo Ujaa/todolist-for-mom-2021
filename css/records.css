@@ -95,7 +95,7 @@
 }
 
 .records__bar-painted {
-  height: 60%;
+  height: 0%;
   width: 6px;
   border-radius: 17px;
   background: var(--blue);

@@ -215,8 +215,15 @@ hr {
 }
 
 .health__text {
-  font-size: 12px;
-  color: var(--light-blue);
+  font-size: 16px;
+  color: var(--blue);
+  line-height: 140%;
+  text-align: center;
+  font-weight: 600;
+}
+
+.health__text span {
+  font-size: 6px;
 }
 
 .health__subtitle {
@@ -229,7 +236,90 @@ hr {
 .health__bg {
   height: 95%;
   border-radius: 15px;
-  padding: 10px;
+  padding: 20px 20px;
   background: #e2e5ee;
   box-shadow: 13px 13px 26px #d0d3db, -13px -13px 26px #f4f7ff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.health__contents {
+  width: 100%;
+  display: flex;
+  margin: 0px 10px;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.cup {
+  width: 30px;
+  height: 100%;
+  background: #e2e5ee;
+  box-shadow: 2px 2px 5px #d0d3db, -2px -2px 5px #f4f7ff;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.water {
+  width: 90%;
+  height: 0%;
+  background: linear-gradient(145deg, #a7b7e4a8, #5979be86);
+  box-shadow: 4px 4px 9px #d7dae2, -4px -4px 9px #edf0fa;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  transition: height 0.5s ease-in-out;
+}
+
+.health__btns {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.health__btns-plus-and-minus {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.health__medicine {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f2f5ff, #cbced6);
+  box-shadow: 4px 4px 5px #d2d5dd, -4px -4px 5px #f2f5ff;
+  transition: background 1s ease-in-out;
+}
+
+.health__medicine--ate {
+  background: linear-gradient(145deg, #7a83ad, #909bcd);
+  box-shadow: 4px 4px 5px #7a83ad, -4px -4px 5px #95a0d3;
+}
+
+.health__medicine--ate i {
+  color: white;
+}
+
+.health__total {
+  font-size: 6px;
+  color: var(--blue);
+}
+
+.health__contents .fa-walking {
+  font-size: 40px;
+  color: var(--light-blue);
 }

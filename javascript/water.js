@@ -67,6 +67,7 @@ function loadWaterCount(){
           saveWaterCount();
     }
 }
+
 function init(){
     loadWater();
     loadWaterCount();

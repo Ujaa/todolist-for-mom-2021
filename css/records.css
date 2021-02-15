@@ -99,7 +99,7 @@
   width: 6px;
   border-radius: 17px;
   background: var(--blue);
-  box-shadow: inset 5px 5px 5px #d2d5dd, inset -5px -5px 5px #f2f5ff;
+  box-shadow: inset 2px 2px 5px #d2d5dd, inset -2px -2px 5px #f2f5ff;
   transition: height 1s ease-in-out;
 }
 

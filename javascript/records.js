@@ -24,38 +24,48 @@ const icons = document.querySelectorAll(".record-btns i"),
 function updateRecordDateText(){
     const date = new Date();
     const oneDayMilliSec = (24*60*60*1000);
-    for (let i = 0; i < recordDate.length; i++) {
+    recordDate[0].innerText = `${date.getMonth()+1}/${date.getDate()}`;
+    for (let i = 1; i < recordDate.length; i++) {
         date.setTime(date.getTime()-(oneDayMilliSec));
         recordDate[i].innerText = `${date.getMonth()+1}/${date.getDate()}`;
     }
 }
 
 function updateToDosRecords(){
-    for (let i = 0; i < toDosCountArr.length; i++) {
-        if(toDosCountArr[i].total !== 0){
-            const height = Math.floor((toDosCountArr[i].done)/(toDosCountArr[i].total)*100);
-            recordBarsPainted[i].style.height = `${height}%`;
-        }else {
-            recordBarsPainted[i].style.height = "0%";
+    if(icons[0].classList.contains(ICONSELECTED_CN)){
+        for (let i = 0; i < toDosCountArr.length; i++) {
+            if(toDosCountArr[i].total !== 0){
+                const height = Math.floor((toDosCountArr[i].done)/(toDosCountArr[i].total)*100);
+                recordBarsPainted[i].style.height = `${height}%`;
+            }else {
+                recordBarsPainted[i].style.height = "0%";
+            }
         }
     }
 }
 
 function updateExerciseRecords(){
-    for (let i = 0; i < exerciseCountArr.length; i++) {
-        recordBarsPainted[i].style.height = `${Math.floor(exerciseCountArr[i]/30*100)}%`;
+    if(icons[1].classList.contains(ICONSELECTED_CN)){
+        for (let i = 0; i < exerciseCountArr.length; i++) {
+            recordBarsPainted[i].style.height = `${Math.floor(exerciseCountArr[i]/30*100)}%`;
+        }
     }
+    
 }
 
 function updateWaterRecords(){
-    for (let i = 0; i < waterCountArr.length; i++) {
-        recordBarsPainted[i].style.height = `${Math.floor(waterCountArr[i]/8*100)}%`;
+    if(icons[2].classList.contains(ICONSELECTED_CN)){
+        for (let i = 0; i < waterCountArr.length; i++) {
+            recordBarsPainted[i].style.height = `${Math.floor(waterCountArr[i]/8*100)}%`;
+        }
     }
 }
 
 function updateMedicineRecords(){
-    for (let i = 0; i < waterCountArr.length; i++) {
-        recordBarsPainted[i].style.height = `${Math.floor(waterCountArr[i]/8*100)}%`;
+    if(icons[3].classList.contains(ICONSELECTED_CN)){
+        for (let i = 0; i < medicinesCountArr.length; i++) {
+            recordBarsPainted[i].style.height = `${Math.floor(medicinesCountArr[i]/2*100)}%`;
+        }
     }
 }
 
@@ -119,6 +129,8 @@ function handleBtnMove4(event){
     icons[1].classList.remove(ICONSELECTED_CN);
     icons[2].classList.remove(ICONSELECTED_CN);
     icons[3].classList.add(ICONSELECTED_CN);
+
+    updateMedicineRecords();
 }
 
 function init(){

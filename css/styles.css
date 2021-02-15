@@ -172,12 +172,10 @@ hr {
 }
 
 .progress__mid {
+  transition: background 3s ease-in-out;
   width: 120px;
   height: 120px;
-  background: linear-gradient(80deg, #ddd 50%, transparent 50%),
-    linear-gradient(90deg, var(--blue) 50%, var(--yellow) 50%);
   box-shadow: inset 9px 9px 18px #c2c5cd, inset -9px -9px 18px #ffffff;
-  transition: background 1s ease-in-out;
 }
 
 .progress__up {

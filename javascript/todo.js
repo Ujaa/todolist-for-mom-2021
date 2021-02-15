@@ -1,6 +1,10 @@
 const    TODOSCOUNT_LS = 'toDosCount',
     TODOFINISGED_CN = 'to-do-finished';
 
+const toDoForm = document.querySelector(".js-toDoForm"),
+    toDoInput = toDoForm.querySelector("input"),
+    toDoList = document.querySelector(".js-toDoList");
+
 const progress_bar = document.querySelector(".progress__mid"),
     progress_text = document.querySelector(".progress__text ");
 
@@ -8,13 +12,20 @@ let toDos = [];
 let newId = 0;
 let toDosCountArr = [];
 
+function updateProgress(){
+    if(toDosCountArr[0].total !== 0){
+        const percent = Math.floor((toDosCountArr[0].done)/(toDosCountArr[0].total)*100);
+        progress_text.innerText = `${percent}%`;
+        progress_bar.style.background = `conic-gradient(var(--blue) 0% ${percent}%, var(--default-color) 25% 100%)`;
+    }else{
+        progress_text.innerText = "0%";
+    }
+    
+}
+
 function saveToDos(){
     localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 }
-
-const toDoForm = document.querySelector(".js-toDoForm"),
-    toDoInput = toDoForm.querySelector("input"),
-    toDoList = document.querySelector(".js-toDoList");
 
 function changeToDoStateWithSpan(event){
     const span = event.target;
@@ -31,9 +42,7 @@ function changeToDoStateWithSpan(event){
     });
     saveToDos();
     updateToDosRecords();
-    progress_text.innerText = `${
-        Math.floor((toDosCountArr[0].done)/(toDosCountArr[0].total)*100) 
-    }%`;
+    updateProgress();
 }
 
 function changeToDoStateWithIcon(event){
@@ -51,13 +60,12 @@ function changeToDoStateWithIcon(event){
     });
     saveToDos();
     updateToDosRecords();
-    progress_text.innerText = `${
-        Math.floor((toDosCountArr[0].done)/(toDosCountArr[0].total)*100) 
-    }%`;
+    updateProgress();
 }
 
 function deleteToDo(event){
-    const btn = event.target;
+    const icon = event.target;
+    const btn = icon.parentNode;
     const li = btn.parentNode;
     toDoList.removeChild(li);
     const cleanToDos = toDos.filter(function(toDo){
@@ -75,9 +83,7 @@ function deleteToDo(event){
     toDos=cleanToDos;
     saveToDos();
     updateToDosRecords();
-    progress_text.innerText = `${
-        Math.floor((toDosCountArr[0].done)/(toDosCountArr[0].total)*100) 
-    }%`;
+    updateProgress();
 }
 
 function isToDoDone(toDo){
@@ -97,7 +103,7 @@ function paintToDo(text, done, dateD){
     li.classList.add("to-do__to-dos");
     delBtn.innerHTML='<i class="fas fa-times fa-xs"></i>';
     delBtn.classList.add("to-do__del-btn");
-    delBtn.addEventListener("click", deleteToDo);
+    delBtn.querySelector("i").addEventListener("click", deleteToDo);
     span.innerText = text;
     span.classList.add("to-do__text");
     span.addEventListener("click", changeToDoStateWithSpan);
@@ -159,9 +165,7 @@ function handleSubmit(event){
     paintToDo(currentValue, false, [today.getFullYear(),today.getMonth()+1,today.getDate()]);
     changeToDosCount("add");
     updateToDosRecords();
-    progress_text.innerText = `${
-        Math.floor((toDosCountArr[0].done)/(toDosCountArr[0].total)*100) 
-    }%`;
+    updateProgress();
     toDoInput.value = "";
 }
 
@@ -197,6 +201,7 @@ function loadToDosCount(){
 function init(){
     loadToDos();
     loadToDosCount();
+    updateProgress();
     toDoForm.addEventListener("submit",handleSubmit);
 }
 

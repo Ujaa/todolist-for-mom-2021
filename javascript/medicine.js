@@ -6,25 +6,53 @@ eveningMedicineIcon = eveningMedicine.querySelector("i"),
 medicineText = document.querySelector(".health__text_medicine");
 
 const MEDICINE_CN = 'medicine',
-    MEDICINEEAT_CN ='health__medicine--ate';
+    MEDICINEEAT_CN ='health__medicine--ate',
+    MEDICINECOUNT_LS = 'medicineCount';
 
 let medicines = {
     morining: false,
     evening: false
 };
 
+let medicinesCountArr = [];
+
+function changeMedicineCount(){
+    medicinesCountArr[0]=returnSumOfMedicine();
+    saveMedicineCount();
+}
+
+function saveMedicineCount(){
+    localStorage.setItem(MEDICINECOUNT_LS, JSON.stringify(medicinesCountArr));
+}
+
+function loadMedicineCount(){
+    const loadedMedicineCountArr = localStorage.getItem(MEDICINECOUNT_LS);
+    if(loadedMedicineCountArr !== null){
+        medicinesCountArr = JSON.parse(loadedMedicineCountArr);
+    }else{
+        for(i=1; i<=13; i++){
+            medicinesCountArr.push(0);
+          }
+          saveMedicineCount();
+    }
+}
+
 function saveMedicine(){
     localStorage.setItem(MEDICINE_CN, JSON.stringify(medicines));
 }
 
-function updateMedicineText(){
+function returnSumOfMedicine(){
     if(medicines.morining && medicines.evening){
-        medicineText.innerText = "2/2";
+        return 2;
     }else if(medicines.morining || medicines.evening){
-        medicineText.innerText = "1/2";
+        return 1;
     }else{
-        medicineText.innerText = "0/2";
+        return 0;
     }
+}
+
+function updateMedicineText(){
+    medicineText.innerText = `${returnSumOfMedicine()}/2`;
 }
 
 function handleMedicineClickForIcon(event){
@@ -40,6 +68,8 @@ function handleMedicineClickForIcon(event){
     }
     updateMedicineText();
     saveMedicine();
+    changeMedicineCount();
+    updateMedicineRecords();
 }
 
 function handleMedicineClickForBtn(event){
@@ -53,6 +83,7 @@ function handleMedicineClickForBtn(event){
     }
     updateMedicineText();
     saveMedicine();
+    changeMedicineCount();
 }
 
 function updateMedicine(){
@@ -77,6 +108,7 @@ function loadMedicine(){
 
 function init(){
     loadMedicine();
+    loadMedicineCount();
     moriningMedicine.addEventListener("click",handleMedicineClickForBtn);
     eveningMedicine.addEventListener("click",handleMedicineClickForBtn);
     moriningMedicineIcon.addEventListener("click",handleMedicineClickForIcon);

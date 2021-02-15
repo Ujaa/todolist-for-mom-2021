@@ -1,11 +1,6 @@
-const TODAY_LS = 'today',
-    TODOS_LS = 'toDos';
+const TODAY_LS = 'today';
+   
 
-    /*
-function updateProgress(){
-        const percent = Math.floor((toDosCountArr[0].done)/(toDosCountArr[0].total)*100);
-        progress_text.innerText = `${percent}%`;
-    }
 
 function saveCurrentDate(todayDate){
     localStorage.setItem(TODAY_LS, JSON.stringify(todayDate));
@@ -24,20 +19,25 @@ function checkDate(){
     const loadSavedDate = localStorage.getItem(TODAY_LS);
     const date = new Date();
     if(loadSavedDate !== null){
-*/
+
         /*현재 날짜와 저장된 날짜 비교
         ->다르다 
         어레이 앞에 0,0추가 뒤에 하나삭제
         todo 초기화
-        현재날짜 갱신 *//*
-        if(loadSavedDate.year !== date.getFullYear() 
-            || loadSavedDate !== date.getMonth()+1 
-            || ef !== loadSavedDate.getDate()){
+        현재날짜 갱신 */
+        if(loadSavedDate.year !== date.getFullYear() || loadSavedDate.month !== date.getMonth()+1 || loadSavedDate.date !== date.getDate()){
                 toDosCountArr.unshift({
                     total: 0,
                     done: 0
                 });
+                medicinesCountArr.unshift(0);
+                exerciseCountArr.unshift(0);
+                waterCountArr.unshift(0);
+
                 toDosCountArr.pop();
+                medicinesCountArr.pop();
+                exerciseCountArr.pop();
+                waterCountArr.pop();
 
                 toDos = [];
                 saveToDos();
@@ -50,4 +50,4 @@ function init(){
     checkDate();
 }
 
-init();*/
+init();

@@ -1,5 +1,6 @@
 const    TODOSCOUNT_LS = 'toDosCount',
-    TODOFINISGED_CN = 'to-do-finished';
+    TODOFINISGED_CN = 'to-do-finished',
+    TODOS_LS = 'toDos';
 
 const toDoForm = document.querySelector(".js-toDoForm"),
     toDoInput = toDoForm.querySelector("input"),

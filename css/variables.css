@@ -1,9 +1,8 @@
 :root {
   --default-color: #e2e5ee;
-  --yellow: #ffb133;
-  --orange: #ff5833;
-  --pink: #ff7c8b;
-  --blue: #2339aa;
-  --light-blue: #8791c0;
+  --ocean: #a2dcee;
+  --aqua: #adeee2;
+  --blue: #9a9cea;
+  --light-blue: #a2b9ee;
   --light-blue-2: #cdd1df;
 }

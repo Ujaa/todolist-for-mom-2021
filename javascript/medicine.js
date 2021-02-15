@@ -1,6 +1,9 @@
 const medicinesContainer = document.querySelectorAll(".health__medicine"),
 moriningMedicine = medicinesContainer[0],
-eveningMedicine = medicinesContainer[1];
+moriningMedicineIcon = moriningMedicine.querySelector("i"),
+eveningMedicine = medicinesContainer[1],
+eveningMedicineIcon = eveningMedicine.querySelector("i"),
+medicineText = document.querySelector(".health__text_medicine");
 
 const MEDICINE_CN = 'medicine',
     MEDICINEEAT_CN ='health__medicine--ate';
@@ -14,7 +17,32 @@ function saveMedicine(){
     localStorage.setItem(MEDICINE_CN, JSON.stringify(medicines));
 }
 
-function handleMedicineClick(event){
+function updateMedicineText(){
+    if(medicines.morining && medicines.evening){
+        medicineText.innerText = "2/2";
+    }else if(medicines.morining || medicines.evening){
+        medicineText.innerText = "1/2";
+    }else{
+        medicineText.innerText = "0/2";
+    }
+}
+
+function handleMedicineClickForIcon(event){
+    const icon = event.target;
+    const button = icon.parentNode;
+    console.log(button);
+    button.classList.toggle(MEDICINEEAT_CN);
+    if(button === moriningMedicine){
+        medicines.morining = !medicines.morining;
+    }
+    if(button === eveningMedicine){
+        medicines.evening = !medicines.evening;
+    }
+    updateMedicineText();
+    saveMedicine();
+}
+
+function handleMedicineClickForBtn(event){
     const button = event.target;
     button.classList.toggle(MEDICINEEAT_CN);
     if(button === moriningMedicine){
@@ -23,6 +51,7 @@ function handleMedicineClick(event){
     if(button === eveningMedicine){
         medicines.evening = !medicines.evening;
     }
+    updateMedicineText();
     saveMedicine();
 }
 
@@ -33,6 +62,7 @@ function updateMedicine(){
     if(medicines.evening){
         eveningMedicine.classList.add(MEDICINEEAT_CN);
     }
+    updateMedicineText();
 }
 
 function loadMedicine(){
@@ -47,8 +77,10 @@ function loadMedicine(){
 
 function init(){
     loadMedicine();
-    moriningMedicine.addEventListener("click",handleMedicineClick);
-    eveningMedicine.addEventListener("click",handleMedicineClick);
+    moriningMedicine.addEventListener("click",handleMedicineClickForBtn);
+    eveningMedicine.addEventListener("click",handleMedicineClickForBtn);
+    moriningMedicineIcon.addEventListener("click",handleMedicineClickForIcon);
+    eveningMedicineIcon.addEventListener("click",handleMedicineClickForIcon);
 }
 
 init();

@@ -31,6 +31,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .container__left {
@@ -268,6 +269,7 @@ hr {
 .water {
   width: 90%;
   height: 0%;
+  margin-bottom: 3px;
   background: linear-gradient(145deg, #a7b7e4a8, #5979be86);
   box-shadow: 4px 4px 9px #d7dae2, -4px -4px 9px #edf0fa;
   border-top-right-radius: 3px;
@@ -290,6 +292,10 @@ hr {
   justify-content: space-between;
   align-items: center;
   height: 100%;
+}
+
+.health__btns-plus-and-minus i {
+  cursor: pointer;
 }
 
 .health__medicine {
@@ -322,4 +328,13 @@ hr {
 .health__contents .fa-walking {
   font-size: 40px;
   color: var(--light-blue);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

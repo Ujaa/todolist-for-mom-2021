@@ -30,7 +30,7 @@ function changeToDoStateWithSpan(event){
         } 
     });
     saveToDos();
-    updateRecords();
+    updateToDosRecords();
     progress_text.innerText = `${
         Math.floor((toDosCountArr[0].done)/(toDosCountArr[0].total)*100) 
     }%`;
@@ -50,7 +50,7 @@ function changeToDoStateWithIcon(event){
         } 
     });
     saveToDos();
-    updateRecords();
+    updateToDosRecords();
     progress_text.innerText = `${
         Math.floor((toDosCountArr[0].done)/(toDosCountArr[0].total)*100) 
     }%`;
@@ -74,7 +74,7 @@ function deleteToDo(event){
     });
     toDos=cleanToDos;
     saveToDos();
-    updateRecords();
+    updateToDosRecords();
     progress_text.innerText = `${
         Math.floor((toDosCountArr[0].done)/(toDosCountArr[0].total)*100) 
     }%`;
@@ -158,7 +158,7 @@ function handleSubmit(event){
     const currentValue = toDoInput.value;
     paintToDo(currentValue, false, [today.getFullYear(),today.getMonth()+1,today.getDate()]);
     changeToDosCount("add");
-    updateRecords();
+    updateToDosRecords();
     progress_text.innerText = `${
         Math.floor((toDosCountArr[0].done)/(toDosCountArr[0].total)*100) 
     }%`;

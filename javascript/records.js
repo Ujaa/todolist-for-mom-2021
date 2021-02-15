@@ -30,7 +30,7 @@ function updateRecordDateText(){
     }
 }
 
-function updateRecords(){
+function updateToDosRecords(){
     for (let i = 0; i < toDosCountArr.length; i++) {
         if(toDosCountArr[i].total !== 0){
             const height = Math.floor((toDosCountArr[i].done)/(toDosCountArr[i].total)*100);
@@ -40,6 +40,25 @@ function updateRecords(){
         }
     }
 }
+
+function updateExerciseRecords(){
+    for (let i = 0; i < exerciseCountArr.length; i++) {
+        recordBarsPainted[i].style.height = `${Math.floor(exerciseCountArr[i]/30*100)}%`;
+    }
+}
+
+function updateWaterRecords(){
+    for (let i = 0; i < waterCountArr.length; i++) {
+        recordBarsPainted[i].style.height = `${Math.floor(waterCountArr[i]/8*100)}%`;
+    }
+}
+
+function updateMedicineRecords(){
+    for (let i = 0; i < waterCountArr.length; i++) {
+        recordBarsPainted[i].style.height = `${Math.floor(waterCountArr[i]/8*100)}%`;
+    }
+}
+
 
 function handleIconClassName(index){
     icons[index].classList.add(ICONSELECTED_CN);
@@ -58,6 +77,8 @@ function handleBtnMove1(event){
     icons[1].classList.remove(ICONSELECTED_CN);
     icons[2].classList.remove(ICONSELECTED_CN);
     icons[3].classList.remove(ICONSELECTED_CN);
+
+    updateToDosRecords();
 }
 
 function handleBtnMove2(event){
@@ -70,6 +91,8 @@ function handleBtnMove2(event){
     icons[1].classList.add(ICONSELECTED_CN);
     icons[2].classList.remove(ICONSELECTED_CN);
     icons[3].classList.remove(ICONSELECTED_CN);
+
+    updateExerciseRecords();
 }
 
 function handleBtnMove3(event){
@@ -82,6 +105,8 @@ function handleBtnMove3(event){
     icons[1].classList.remove(ICONSELECTED_CN);
     icons[2].classList.add(ICONSELECTED_CN);
     icons[3].classList.remove(ICONSELECTED_CN);
+
+    updateWaterRecords();
 }
 
 function handleBtnMove4(event){
@@ -101,7 +126,7 @@ function init(){
     icons[1].addEventListener("click",handleBtnMove2);
     icons[2].addEventListener("click",handleBtnMove3);
     icons[3].addEventListener("click",handleBtnMove4)
-    updateRecords();
+    updateToDosRecords();
     updateRecordDateText();
 }
 
